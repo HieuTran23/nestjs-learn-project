@@ -53,14 +53,14 @@ export class AuthService {
     async signAccessToken(userId: number, email: string): Promise<string>{
         const payload = {userId, email}
         const secret = this.configService.get('ACCESS_TOKEN_KEY')
-        const access_token = this.jwtService.sign(payload, {expiresIn: `${this.configService.get('JWT_ACCESS_EXPIRATION_TIME')}s`, secret})
+        const access_token = this.jwtService.sign(payload, {expiresIn: this.configService.get('JWT_ACCESS_EXPIRATION_TIME'), secret})
         return access_token
     }
 
     async signRefreshToken(userId: number, email: string): Promise<string>{
         const payload = {userId, email}
         const secret = this.configService.get('REFRESH_TOKEN_KEY')
-        const refresh_token = this.jwtService.sign(payload, {expiresIn: `${this.configService.get('JWT_REFRESH_EXPIRATION_TIME')}s`, secret})
+        const refresh_token = this.jwtService.sign(payload, {expiresIn: this.configService.get('JWT_REFRESH_EXPIRATION_TIME'), secret})
         return refresh_token
     }
 }

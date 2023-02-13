@@ -48,12 +48,10 @@ export class AuthController {
     }
 
     @UseGuards(JwtRefreshGuard)
-    @Post('refresh')
-    refresh(@Req() request: RequestWithUser) {
+    @Get('refresh')
+    async refresh(@Req() request: RequestWithUser) {
         const {user} = request
-
-        const accessToken = this.authService.signAccessToken(user.id, user.email)
-
-        return accessToken
+        const accessToken = await this.authService.signAccessToken(user.id, user.email)
+        return {access_token: accessToken}
     }
 }
