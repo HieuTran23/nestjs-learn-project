@@ -8,19 +8,19 @@ import {Request} from "express"
 
 @Injectable()
 export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
-    constructor(
-      private readonly configService: ConfigService,
-      private readonly userService: UserService,
-    ) {
-      super({
-        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-        secretOrKey: configService.get('REFRESH_TOKEN_KEY'),
-        passReqToCallback: true,
-      });
-    }
-  
-    async validate(req: Request, payload: TokenPayload) {
-        const refreshToken = req.get('Authorization').replace('Bearer', '').trim();
-        return { ...payload, refreshToken };
-    }
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly userService: UserService,
+  ) {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: configService.get('REFRESH_TOKEN_KEY'),
+      passReqToCallback: true,
+    });
   }
+
+  async validate(req: Request, payload: TokenPayload) {
+      const refreshToken = req.get('Authorization').replace('Bearer', '').trim();
+      return { ...payload, refreshToken };
+  }
+} 

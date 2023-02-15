@@ -2,11 +2,12 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@n
 import PostService from './post.service';
 import CreatePostDto from './dto/createPost.dto';
 import UpdatePostDto from './dto/updatePost.dto';
-import RoleGuard from 'src/auth/guard/role.guard';
-import { LocalAuthenticationGuard } from 'src/auth/guard/localAuthentication.guard';
+import RoleGuard from '../auth/guard/role.guard';
+import { LocalAuthenticationGuard } from '../auth/guard/localAuthentication.guard';
+import JwtAuthenticationGuard from '../auth/guard/jwt-authentication.guard';
 
 @Controller('post')
-export default class PostsController {
+export default class PostController {
   constructor(
     private readonly postService: PostService
   ) {}
@@ -22,7 +23,7 @@ export default class PostsController {
   }
   
   @Post()
-  @UseGuards(LocalAuthenticationGuard)
+  @UseGuards(JwtAuthenticationGuard)
   async createPost(@Body() post: CreatePostDto) {
     return this.postService.createPost(post);
   }

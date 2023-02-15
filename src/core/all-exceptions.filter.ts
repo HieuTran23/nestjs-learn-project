@@ -30,7 +30,14 @@ export class AllExceptionFilter implements ExceptionFilter {
         const errorResponse = this.getErrorResponse(status, errorMessage, request);
         const errorLog = this.getErrorLog(errorResponse, request, exception);
         this.writeErrorLogToFile(errorLog);
+        this.logError(errorLog);
         response.status(status).json(errorResponse);
+    }
+
+    private logError = (errorLog: string) => {
+        console.log('-=-=-=-=-=-=-=-=-=- Start Error Logger -=-=-=-=-=-=-=-=-=-')
+        console.log(errorLog)
+        console.log('-=-=-=-=-=-=-=-=-=- End Error Logger -=-=-=-=-=-=-=-=-=-\n\n')
     }
 
     private getErrorResponse = (status: HttpStatus, errorMessage: string, request: Request): CustomHttpExceptionResponse => ({
