@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CategoryController } from './category.controller';
 import { CategoryService } from './category.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import Category from './category.entities';
+import Category from './entities/category.entities';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Category])],

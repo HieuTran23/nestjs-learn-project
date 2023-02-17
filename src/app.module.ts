@@ -9,9 +9,11 @@ import { AllExceptionFilter } from './core/all-exceptions.filter';
 import { APP_FILTER } from '@nestjs/core';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
+import { RatesModule } from './rates/rates.module';
+import { IconsModule } from './icons/icons.module';
 
 @Module({
-  imports: [PostModule, ConfigModule.forRoot({
+  imports: [ConfigModule.forRoot({
     validationSchema: Joi.object({
       POSTGRES_HOST: Joi.string().required(),
       POSTGRES_PORT: Joi.number().required(),
@@ -29,7 +31,10 @@ import { ProductModule } from './product/product.module';
   AuthModule,
   UserModule,
   CategoryModule,
-  ProductModule,],
+  ProductModule,
+  PostModule,
+  RatesModule,
+  IconsModule,],
   controllers: [],
   providers: [{
     provide: APP_FILTER,

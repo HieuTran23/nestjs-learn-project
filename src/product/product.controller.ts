@@ -1,34 +1,57 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ProductService } from './product.service';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from "@nestjs/common";
+import { ProductService } from "./product.service";
+import { CreateProductDto } from "./dto/create-product.dto";
+import { UpdateProductDto } from "./dto/update-product.dto";
+import { SearchProductDto } from "./dto/search-product.dto";
 
-@Controller('product')
+@Controller("product")
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Post()
-  create(@Body() createProductDto: CreateProductDto) {
-    return this.productService.create(createProductDto);
+  async createProduct(@Body() product: CreateProductDto) {
+    return await this.productService.createProduct(product);
   }
 
   @Get()
-  findAll() {
-    return this.productService.findAll();
+  getAllProducts() {
+    return this.productService.getAllProducts();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productService.findOne(+id);
+  @Get("search")
+  async searchProduct(@Query() query: SearchProductDto) {
+    return await this.productService.searchProducts(query);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.productService.update(+id, updateProductDto);
+  @Get(":id")
+  getProductById(@Param("id") id: string) {
+    return this.productService.getProductById(Number(id));
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productService.remove(+id);
+  @Patch(":id")
+  async updateProduct(
+    @Param("id") id: string,
+    @Body() product: UpdateProductDto
+  ) {
+    return await this.productService.updateProduct(Number(id), product);
+  }
+
+  @Delete(":id")
+  async deleteProduct(@Param("id") id: string) {
+    return await this.productService.deleteProduct(Number(id));
+  }
+
+  @Get("a")
+  helloFun() {
+    return "hello";
   }
 }

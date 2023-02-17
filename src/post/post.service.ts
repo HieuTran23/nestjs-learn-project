@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import Post from './post.entity';
+import Post from './entities/post.entity';
 import { Repository } from 'typeorm';
 import CreatePostDto from './dto/createPost.dto';
 import UpdatePostDto from './dto/updatePost.dto';
@@ -17,7 +17,7 @@ export default class PostService {
     }
 
     async createPost(post: CreatePostDto) {
-        const newPost = await this.postRepository.create(post);
+        const newPost = this.postRepository.create(post);
         await this.postRepository.save(newPost);
         return newPost;
     }

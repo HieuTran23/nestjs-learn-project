@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import RegisterDto from './dto/register.dto';
 import * as argon from 'argon2'
-import PostgresErrorCode from 'src/database/postgresErrorCode.enum';
-import { UserService } from 'src/user/user.service';
+import PostgresErrorCode from '../database/postgresErrorCode.enum';
+import { UserService } from '../user/user.service';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 

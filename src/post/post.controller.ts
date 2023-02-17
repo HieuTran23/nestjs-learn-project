@@ -25,16 +25,16 @@ export default class PostController {
   @Post()
   @UseGuards(JwtAuthenticationGuard)
   async createPost(@Body() post: CreatePostDto) {
-    return this.postService.createPost(post);
+    return await this.postService.createPost(post);
   }
 
   @Patch(':id')
   async updatePost(@Param('id') id: string, @Body() post: UpdatePostDto) {
-    return this.postService.updatePost(Number(id), post)
+    return await this.postService.updatePost(Number(id), post)
   }
 
   @Delete(':id')
   async deletePost(@Param('id') id: string) {
-    return this.postService.deletePost(Number(id));
+    return await this.postService.deletePost(Number(id));
   }
 }

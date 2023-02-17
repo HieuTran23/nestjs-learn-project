@@ -1,39 +1,108 @@
-import { Injectable } from '@nestjs/common';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
-import Product from './entities/product.entity';
-import { Repository } from 'typeorm';
-import Category from 'src/category/category.entities';
-import { HttpException } from '@nestjs/common/exceptions';
-import { HttpStatus } from '@nestjs/common/enums';
+import { Injectable } from "@nestjs/common";
+import { CreateProductDto } from "./dto/create-product.dto";
+import { UpdateProductDto } from "./dto/update-product.dto";
+import Product from "./entities/product.entity";
+import { Repository } from "typeorm";
+import { InjectRepository } from "@nestjs/typeorm";
+import { CategoryService } from "src/category/category.service";
+import ProductNotFoundException from "./exception/productNotFound.exception";
+import SearchProductDto from "./dto/search-product.dto";
+import ProductsNotFoundException from "./exception/productsNotFound.exception";
 
 @Injectable()
 export class ProductService {
   constructor(
+    @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
-    private readonly categoryRepository: Repository<Category>
+    private readonly categoryService: CategoryService
   ) {}
 
-  async create(product: CreateProductDto) {
-    const category = await this.categoryRepository.findOne({where: {id: product.categoryId}})
-    if(!category) throw new HttpException('Not found category', HttpStatus.NOT_FOUND)
-   
-    const newProduct = await this.productRepository.create({...product})
+  async createProduct(product: CreateProductDto) {
+    const category = await this.categoryService.getCategoryById(
+      product.categoryId
+    );
+    const newProduct = this.productRepository.create({
+      ...product,
+      category: category,
+    });
+    await this.productRepository.save(newProduct);
+    return newProduct;
   }
 
-  findAll() {
-    return `This action returns all product`;
+  getAllProducts() {
+    return this.productRepository.find({
+      relations: ["category"],
+      select: {
+        category: {
+          id: true,
+          name: true,
+        },
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
+  async getProductById(id: number) {
+    const product = await this.productRepository.findOne({
+      where: { id },
+      relations: ["category"],
+      select: {
+        category: {
+          id: true,
+          name: true,
+        },
+      },
+    });
+    if (!product) throw new ProductNotFoundException(id);
+    return product;
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  async updateProduct(id: number, product: UpdateProductDto) {
+    const category = await this.categoryService.getCategoryById(
+      product.categoryId
+    );
+    const updatedProduct = await this.productRepository.save({
+      id,
+      ...product,
+      category,
+    });
+    if (!updatedProduct) throw new ProductNotFoundException(id);
+    return updatedProduct;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  async deleteProduct(id: number) {
+    const deleteResponse = await this.productRepository.delete(id);
+    if (!deleteResponse.affected) throw new ProductNotFoundException(id);
+  }
+
+  async searchProducts(query: SearchProductDto) {
+    query.category ? query.category : (query.category = "");
+    query.limit ? query.limit : (query.limit = 3);
+    query.page ? query.page : (query.page = 1);
+    query.product ? query.product : (query.product = "");
+    const sortOrder =
+      query.order === "newest"
+        ? { orderField: "product.createdAt", orderValue: "DESC" as const }
+        : { orderField: "product.id", orderValue: "DESC" as const };
+
+    const searchProductQuery = await this.productRepository
+      .createQueryBuilder("product")
+      .innerJoinAndSelect("product.category", "category")
+      .where("product.name LIKE :name", {
+        name: `%${query.product}%`,
+      })
+      .andWhere("category.name LIKE :categoryName", {
+        categoryName: `%${query.category}%`,
+      })
+      .orderBy(sortOrder.orderField, sortOrder.orderValue)
+      .take(query.limit)
+      .skip(query.limit * (query.page - 1))
+      .getMany();
+
+    const countProducts = await this.productRepository.count();
+
+    return {
+      products: searchProductQuery,
+      pages: Math.ceil(countProducts / query.limit),
+    };
   }
 }

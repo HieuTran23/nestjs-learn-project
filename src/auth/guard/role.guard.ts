@@ -1,14 +1,20 @@
-import { CanActivate, ExecutionContext, Injectable, Type, mixin } from "@nestjs/common";
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  Type,
+  mixin,
+} from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { ROLES_KEY } from "../decorators/role.decorator";
 import JwtAuthenticationGuard from "./jwt-authentication.guard";
 import RequestWithUser from "../interface/requestWithUser.interface";
-import { Role } from "src/user/enum/role.enum";
+import { Role } from "../../user/enum/role.enum";
 
 // @Injectable()
 // export class RolesGuard implements CanActivate {
 //     constructor(private reflector: Reflector) {}
-    
+
 //     canActivate(context: ExecutionContext): boolean {
 //         const requiredRoles = this.reflector.getAllAndOverride<Role[]>(ROLES_KEY, [
 //             context.getHandler(),
@@ -25,18 +31,18 @@ import { Role } from "src/user/enum/role.enum";
 // }
 
 const RoleGuard = (role: Role): Type<CanActivate> => {
-    class RoleGuardMixin extends JwtAuthenticationGuard {
-      async canActivate(context: ExecutionContext) {
-        await super.canActivate(context);
-   
-        const request = context.switchToHttp().getRequest<RequestWithUser>();
-        const user = request.user;
+  class RoleGuardMixin extends JwtAuthenticationGuard {
+    async canActivate(context: ExecutionContext) {
+      await super.canActivate(context);
 
-        return user?.roles.includes(role);
-      }
+      const request = context.switchToHttp().getRequest<RequestWithUser>();
+      const user = request.user;
+
+      return user?.roles.includes(role);
     }
-   
-    return mixin(RoleGuardMixin);
   }
-   
-  export default RoleGuard;
+
+  return mixin(RoleGuardMixin);
+};
+
+export default RoleGuard;

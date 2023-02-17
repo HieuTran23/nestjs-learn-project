@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
-import { Role } from "./enum/role.enum";
+import { Role } from "../enum/role.enum";
 import { Exclude } from "class-transformer";
 
 @Entity()
