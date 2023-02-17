@@ -8,5 +8,6 @@ import Icon from "./entities/icon.entity";
   imports: [TypeOrmModule.forFeature([Icon])],
   controllers: [IconsController],
   providers: [IconsService],
+  exports: [IconsService],
 })
 export class IconsModule {}

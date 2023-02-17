@@ -37,6 +37,15 @@ export class ProductController {
     return this.productService.getProductById(Number(id));
   }
 
+  @Get(":id/rate/:iconId")
+  async rateProduct(@Param("id") id: string, @Param("iconId") iconId: string) {
+    try {
+      return await this.productService.rateProduct(Number(id), Number(iconId));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   @Patch(":id")
   async updateProduct(
     @Param("id") id: string,

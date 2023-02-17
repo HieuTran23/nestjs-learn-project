@@ -4,9 +4,9 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  JoinTable,
   ManyToMany,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import Icon from "src/icons/entities/icon.entity";
@@ -27,7 +27,7 @@ export default class Product {
   public category: Category;
 
   @ManyToMany(() => Icon, (icon) => icon.products)
-  @JoinColumn()
+  @JoinTable()
   public icons: Icon[];
 
   @CreateDateColumn()

@@ -20,7 +20,6 @@ export default class Icon {
   description: string;
 
   @ManyToMany(() => Product, (product) => product.icons)
-  @JoinColumn()
   products: Product[];
 
   @CreateDateColumn()

@@ -5,7 +5,6 @@ import Post from "src/post/entities/post.entity";
 import User from "src/user/entities/user.entity";
 import Category from "src/category/entities/category.entities";
 import Product from "src/product/entities/product.entity";
-import { Rate } from "src/rates/entities/rate.entity";
 import Icon from "src/icons/entities/icon.entity";
 
 @Module({
@@ -20,7 +19,7 @@ import Icon from "src/icons/entities/icon.entity";
         username: configService.get("POSTGRES_USER"),
         password: configService.get("POSTGRES_PASSWORD"),
         database: configService.get("POSTGRES_DB"),
-        entities: [Product, User, Post, Category, Rate, Icon],
+        entities: [Product, User, Post, Category, Icon],
         synchronize: true,
       }),
     }),

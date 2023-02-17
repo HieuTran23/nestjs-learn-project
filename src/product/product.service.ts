@@ -8,13 +8,15 @@ import { CategoryService } from "src/category/category.service";
 import ProductNotFoundException from "./exception/productNotFound.exception";
 import SearchProductDto from "./dto/search-product.dto";
 import ProductsNotFoundException from "./exception/productsNotFound.exception";
+import { IconsService } from "src/icons/icons.service";
 
 @Injectable()
 export class ProductService {
   constructor(
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
-    private readonly categoryService: CategoryService
+    private readonly categoryService: CategoryService,
+    private readonly iconService: IconsService
   ) {}
 
   async createProduct(product: CreateProductDto) {
@@ -44,7 +46,7 @@ export class ProductService {
   async getProductById(id: number) {
     const product = await this.productRepository.findOne({
       where: { id },
-      relations: ["category"],
+      relations: ["category", "icons"],
       select: {
         category: {
           id: true,
@@ -104,5 +106,21 @@ export class ProductService {
       products: searchProductQuery,
       pages: Math.ceil(countProducts / query.limit),
     };
+  }
+
+  async rateProduct(productId: number, iconId: number) {
+    const foundIcon = await this.iconService.findOne(iconId);
+    const foundPost = await this.productRepository.findOne({
+      where: { id: productId },
+      relations: ["icons"],
+    });
+
+    console.log(foundPost, foundIcon);
+
+    foundPost.icons = [...foundPost.icons, foundIcon];
+    await this.productRepository.save(foundPost);
+    console.log(foundPost.icons);
+
+    return foundPost;
   }
 }
