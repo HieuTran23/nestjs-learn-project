@@ -6,10 +6,12 @@ import { AuthModule } from "./auth/auth.module";
 import { UserModule } from "./user/user.module";
 import * as Joi from "@hapi/joi";
 import { AllExceptionFilter } from "./core/all-exceptions.filter";
-import { APP_FILTER } from "@nestjs/core";
+import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";
 import { CategoryModule } from "./category/category.module";
 import { ProductModule } from "./product/product.module";
 import { IconsModule } from "./icons/icons.module";
+import { LoggingInterceptor } from "./core/logging.interceptor";
+import { TransformInterceptor } from "./core/transform.interceptor";
 
 @Module({
   imports: [
@@ -40,6 +42,14 @@ import { IconsModule } from "./icons/icons.module";
     {
       provide: APP_FILTER,
       useClass: AllExceptionFilter,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TransformInterceptor,
     },
   ],
 })

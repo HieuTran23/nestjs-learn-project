@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import Post from "./entities/post.entity";
+import PostEntity from "./entities/post.entity";
 import { Repository } from "typeorm";
 import CreatePostDto from "./dto/createPost.dto";
 import UpdatePostDto from "./dto/updatePost.dto";
@@ -8,21 +8,21 @@ import UpdatePostDto from "./dto/updatePost.dto";
 @Injectable()
 export default class PostService {
   constructor(
-    @InjectRepository(Post)
-    private postRepository: Repository<Post>
+    @InjectRepository(PostEntity)
+    private postRepository: Repository<PostEntity>
   ) {}
 
-  getAllPosts() {
+  getAllPosts(): Promise<PostEntity[]> {
     return this.postRepository.find();
   }
 
-  async createPost(post: CreatePostDto) {
+  async createPost(post: CreatePostDto): Promise<PostEntity> {
     const newPost = this.postRepository.create(post);
     await this.postRepository.save(newPost);
     return newPost;
   }
 
-  async getPostById(id: number) {
+  async getPostById(id: number): Promise<PostEntity> {
     const post = await this.postRepository.findOne({ where: { id: id } });
     if (post) {
       return post;
@@ -30,7 +30,7 @@ export default class PostService {
     throw new HttpException("Post not found", HttpStatus.NOT_FOUND);
   }
 
-  async updatePost(id: number, post: UpdatePostDto) {
+  async updatePost(id: number, post: UpdatePostDto): Promise<PostEntity> {
     await this.postRepository.update(id, post);
     const updatedPost = await this.postRepository.findOne({
       where: { id: id },

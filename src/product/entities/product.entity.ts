@@ -8,6 +8,7 @@ import {
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import Icon from "src/icons/entities/icon.entity";
 
@@ -30,6 +31,9 @@ export default class Product {
   @JoinTable()
   public icons: Icon[];
 
-  @CreateDateColumn()
-  public createdAt: Date;
+  @CreateDateColumn({ name: "created_at" })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: "updated_at" })
+  updatedAt: Date;
 }

@@ -1,66 +1,82 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import RegisterDto from './dto/register.dto';
-import * as argon from 'argon2'
-import PostgresErrorCode from '../database/postgresErrorCode.enum';
-import { UserService } from '../user/user.service';
-import { ConfigService } from '@nestjs/config';
-import { JwtService } from '@nestjs/jwt';
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import RegisterDto from "./dto/register.dto";
+import * as argon from "argon2";
+import PostgresErrorCode from "../database/postgresErrorCode.enum";
+import { UserService } from "../user/user.service";
+import { ConfigService } from "@nestjs/config";
+import { JwtService } from "@nestjs/jwt";
+import User from "src/user/entities/user.entity";
+import LoginDto from "./dto/login.dto";
 
 @Injectable()
 export class AuthService {
-    constructor(
-        private readonly userService: UserService,
-        private readonly configService: ConfigService,
-        private readonly jwtService: JwtService
-    ) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly configService: ConfigService,
+    private readonly jwtService: JwtService
+  ) {}
 
-    async register(registerForm: RegisterDto) {
-        const hashPassword = await argon.hash(registerForm.password);
-        try{
-            const createdUser = await this.userService.create({
-                ...registerForm,
-                hashPassword: hashPassword
-            })
-            return createdUser
-        } catch (err) {
-            if (err?.code === PostgresErrorCode.UniqueViolation) {
-                throw new HttpException('User with that email already exists', HttpStatus.BAD_REQUEST);
-            }
-            throw new HttpException('Something went wrong', HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+  async login(user: User): Promise<{ accessToken: string; refreshToken: string }> {
+    const accessToken = await this.signAccessToken(user.id, user.email);
+    const refreshToken = await this.signRefreshToken(user.id, user.email);
 
-    async getAuthenticatedUser(email: string, plainTextPassword: string) {
-        try {
-            const user = await this.userService.getByEmail(email);
-            await this.verifyPassword( user.hashPassword, plainTextPassword)
-            return user
-        } catch (err) {
-            throw new HttpException('Wrong email/password', HttpStatus.BAD_REQUEST);
-        }
-    }
+    await this.userService.setCurrentRefreshToken(refreshToken, user.id);
 
-    private async verifyPassword(plainTextPassword: string, hashedPassword: string) {
-        const isPasswordMatching = await argon.verify(
-            plainTextPassword,
-            hashedPassword,
-        )
-        if(!isPasswordMatching) {
-            throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
-        }
-    }
+    return { accessToken, refreshToken };
+  }
 
-    async signAccessToken(userId: number, email: string): Promise<string>{
-        const payload = {userId, email}
-        const secret = this.configService.get('ACCESS_TOKEN_KEY')
-        const access_token = this.jwtService.sign(payload, {expiresIn: this.configService.get('JWT_ACCESS_EXPIRATION_TIME'), secret})
-        return access_token
+  async register(registerForm: RegisterDto): Promise<User> {
+    const hashPassword = await argon.hash(registerForm.password);
+    try {
+      const createdUser = await this.userService.create({
+        ...registerForm,
+        hashPassword: hashPassword,
+      });
+      return createdUser;
+    } catch (err) {
+      if (err?.code === PostgresErrorCode.UniqueViolation) {
+        throw new HttpException("User with that email already exists", HttpStatus.BAD_REQUEST);
+      }
+      throw new HttpException("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
     }
+  }
 
-    async signRefreshToken(userId: number, email: string): Promise<string>{
-        const payload = {userId, email}
-        const secret = this.configService.get('REFRESH_TOKEN_KEY')
-        const refresh_token = this.jwtService.sign(payload, {expiresIn: this.configService.get('JWT_REFRESH_EXPIRATION_TIME'), secret})
-        return refresh_token
+  async getAuthenticatedUser(email: string, plainTextPassword: string): Promise<User> {
+    try {
+      const user = await this.userService.getByEmail(email);
+      await this.userService.verifyPassword(plainTextPassword, user.hashPassword);
+      return user;
+    } catch (err) {
+      throw new HttpException("Wrong email/password", HttpStatus.BAD_REQUEST);
     }
+  }
+
+  async refreshAccessToken(user: User, refreshToken: string): Promise<{ accessToken: string }> {
+    const foundUser = await this.userService.getById(user.id);
+
+    await this.userService.verifyRefreshToken(foundUser.currentHashedRefreshToken, refreshToken);
+
+    const accessToken = await this.signAccessToken(user.id, user.email);
+    return { accessToken };
+  }
+
+  async signAccessToken(userId: number, email: string): Promise<string> {
+    const payload = { userId, email };
+    const secret = this.configService.get("ACCESS_TOKEN_KEY");
+    const access_token = this.jwtService.sign(payload, {
+      expiresIn: this.configService.get("JWT_ACCESS_EXPIRATION_TIME"),
+      secret,
+    });
+    return access_token;
+  }
+
+  async signRefreshToken(userId: number, email: string): Promise<string> {
+    const payload = { userId, email };
+    const secret = this.configService.get("REFRESH_TOKEN_KEY");
+    const refresh_token = this.jwtService.sign(payload, {
+      expiresIn: this.configService.get("JWT_REFRESH_EXPIRATION_TIME"),
+      secret,
+    });
+    return refresh_token;
+  }
 }

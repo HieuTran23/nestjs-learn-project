@@ -1,13 +1,11 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { CreateProductDto } from "./dto/create-product.dto";
 import { UpdateProductDto } from "./dto/update-product.dto";
 import Product from "./entities/product.entity";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CategoryService } from "src/category/category.service";
-import ProductNotFoundException from "./exception/productNotFound.exception";
 import SearchProductDto from "./dto/search-product.dto";
-import ProductsNotFoundException from "./exception/productsNotFound.exception";
 import { IconsService } from "src/icons/icons.service";
 
 @Injectable()
@@ -19,10 +17,8 @@ export class ProductService {
     private readonly iconService: IconsService
   ) {}
 
-  async createProduct(product: CreateProductDto) {
-    const category = await this.categoryService.getCategoryById(
-      product.categoryId
-    );
+  async createProduct(product: CreateProductDto): Promise<Product> {
+    const category = await this.categoryService.getCategoryById(product.categoryId);
     const newProduct = this.productRepository.create({
       ...product,
       category: category,
@@ -31,7 +27,7 @@ export class ProductService {
     return newProduct;
   }
 
-  getAllProducts() {
+  getAllProducts(): Promise<Product[]> {
     return this.productRepository.find({
       relations: ["category"],
       select: {
@@ -43,7 +39,7 @@ export class ProductService {
     });
   }
 
-  async getProductById(id: number) {
+  async getProductById(id: number): Promise<Product> {
     const product = await this.productRepository.findOne({
       where: { id },
       relations: ["category", "icons"],
@@ -54,29 +50,28 @@ export class ProductService {
         },
       },
     });
-    if (!product) throw new ProductNotFoundException(id);
+    if (!product) throw new HttpException("Product Not Found", HttpStatus.NOT_FOUND);
     return product;
   }
 
-  async updateProduct(id: number, product: UpdateProductDto) {
-    const category = await this.categoryService.getCategoryById(
-      product.categoryId
-    );
+  async updateProduct(id: number, product: UpdateProductDto): Promise<Product> {
+    const category = await this.categoryService.getCategoryById(product.categoryId);
     const updatedProduct = await this.productRepository.save({
       id,
       ...product,
       category,
     });
-    if (!updatedProduct) throw new ProductNotFoundException(id);
+    if (!updatedProduct) throw new HttpException("Product Not Found", HttpStatus.NOT_FOUND);
     return updatedProduct;
   }
 
   async deleteProduct(id: number) {
     const deleteResponse = await this.productRepository.delete(id);
-    if (!deleteResponse.affected) throw new ProductNotFoundException(id);
+    if (!deleteResponse.affected)
+      throw new HttpException("Product Not Found", HttpStatus.NOT_FOUND);
   }
 
-  async searchProducts(query: SearchProductDto) {
+  async searchProducts(query: SearchProductDto): Promise<{ products: Product[]; pages: number }> {
     query.category ? query.category : (query.category = "");
     query.limit ? query.limit : (query.limit = 3);
     query.page ? query.page : (query.page = 1);
@@ -108,19 +103,14 @@ export class ProductService {
     };
   }
 
-  async rateProduct(productId: number, iconId: number) {
+  async rateProduct(productId: number, iconId: number): Promise<Product> {
     const foundIcon = await this.iconService.findOne(iconId);
     const foundPost = await this.productRepository.findOne({
       where: { id: productId },
       relations: ["icons"],
     });
-
-    console.log(foundPost, foundIcon);
-
     foundPost.icons = [...foundPost.icons, foundIcon];
     await this.productRepository.save(foundPost);
-    console.log(foundPost.icons);
-
     return foundPost;
   }
 }

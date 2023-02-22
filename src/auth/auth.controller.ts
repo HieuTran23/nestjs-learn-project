@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Req,
-  Res,
-  UseGuards,
-} from "@nestjs/common";
+import { Body, Controller, Get, Post, Req, Res, UseGuards, UseInterceptors } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import RegisterDto from "./dto/register.dto";
 import { AuthGuard } from "@nestjs/passport";
@@ -16,6 +8,9 @@ import JwtAuthenticationGuard from "./guard/jwt-authentication.guard";
 import { LocalAuthenticationGuard } from "./guard/localAuthentication.guard";
 import { UserService } from "../user/user.service";
 import JwtRefreshGuard from "./guard/jwt-refresh-token.guard";
+import User from "src/user/entities/user.entity";
+import { use } from "passport";
+import { LoggingInterceptor } from "src/core/logging.interceptor";
 
 @Controller("auth")
 export class AuthController {
@@ -25,26 +20,18 @@ export class AuthController {
   ) {}
 
   @Post("register")
-  async register(@Body() registrationForm: RegisterDto) {
+  async register(@Body() registrationForm: RegisterDto): Promise<User> {
     return this.authService.register(registrationForm);
   }
 
   @Post("login")
   @UseGuards(LocalAuthenticationGuard)
-  async login(@Req() request: RequestWithUser, @Res() response: Response) {
+  async login(
+    @Req() request: RequestWithUser
+  ): Promise<{ accessToken: string; refreshToken: string }> {
     const { user } = request;
-    const accessToken = await this.authService.signAccessToken(
-      user.id,
-      user.email
-    );
-    const refreshToken = await this.authService.signRefreshToken(
-      user.id,
-      user.email
-    );
-
-    await this.userService.setCurrentRefreshToken(refreshToken, user.id);
-
-    return response.send({ accessToken, refreshToken });
+    const data = await this.authService.login(user);
+    return data;
   }
 
   @UseGuards(JwtAuthenticationGuard)
@@ -57,18 +44,16 @@ export class AuthController {
   @Get()
   authenticate(@Req() request: RequestWithUser) {
     const user = request.user;
-    user.hashPassword = undefined;
     return user;
   }
 
   @UseGuards(JwtRefreshGuard)
   @Get("refresh")
-  async refresh(@Req() request: RequestWithUser) {
+  async refreshAccessToken(@Req() request: RequestWithUser): Promise<{ accessToken: string }> {
     const { user } = request;
-    const accessToken = await this.authService.signAccessToken(
-      user.id,
-      user.email
-    );
-    return { access_token: accessToken };
+    const refreshToken = request.get("Authorization").replace("Bearer", "").trim();
+
+    const accessToken = this.authService.refreshAccessToken(user, refreshToken);
+    return accessToken;
   }
 }

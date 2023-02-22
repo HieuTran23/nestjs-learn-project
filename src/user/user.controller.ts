@@ -1,14 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
-import { UserService } from './user.service';
+import { Controller, Get } from "@nestjs/common";
+import { UserService } from "./user.service";
+import User from "./entities/user.entity";
 
-@Controller('user')
+@Controller("user")
 export class UserController {
-    constructor(
-        private readonly userService: UserService
-    ) {}
+  constructor(private readonly userService: UserService) {}
 
-    @Get()
-    getAllUsers() {
-        return this.userService.getAllUsers()
-    }
+  @Get()
+  getAllUsers(): Promise<User[]> {
+    return this.userService.getAllUsers();
+  }
 }
