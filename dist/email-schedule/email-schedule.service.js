@@ -19,7 +19,7 @@ let EmailScheduleService = class EmailScheduleService {
         this.emailService = emailService;
         this.schedulerRegistry = schedulerRegistry;
     }
-    async scheduleEmail(emailSchedule) {
+    scheduleEmail(emailSchedule) {
         const date = new Date(emailSchedule.date);
         const job = new cron_1.CronJob(date, () => {
             this.emailService.sendMail({
@@ -28,8 +28,26 @@ let EmailScheduleService = class EmailScheduleService {
                 text: emailSchedule.content,
             });
         });
-        this.schedulerRegistry.addCronJob(`${Date.now()}-${emailSchedule.subject}`, job);
+        const intervalName = `${Date.now()}-${emailSchedule.subject}`;
+        this.schedulerRegistry.addCronJob(intervalName, job);
         job.start();
+    }
+    intervalScheduleEmail(intervalScheduleEmail) {
+        const milliseconds = intervalScheduleEmail.milliseconds || 1000;
+        const interval = setInterval(() => {
+            this.emailService.sendMail({
+                to: intervalScheduleEmail.recipient,
+                subject: intervalScheduleEmail.subject,
+                text: intervalScheduleEmail.content,
+            });
+        }, milliseconds);
+        const intervalName = `${Date.now()}-${intervalScheduleEmail.subject}`;
+        this.schedulerRegistry.addInterval(intervalName, interval);
+        console.log(intervalName);
+    }
+    deleteIntervalScheduleEmail(intervalName) {
+        this.schedulerRegistry.deleteInterval(intervalName);
+        console.log(`Interval ${intervalName} deleted!`);
     }
     cancelAllScheduledEmails() {
         this.schedulerRegistry.getCronJobs().forEach((job) => {

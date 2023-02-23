@@ -16,17 +16,19 @@ exports.EmailScheduleController = void 0;
 const common_1 = require("@nestjs/common");
 const email_schedule_service_1 = require("./email-schedule.service");
 const email_schedule_dto_1 = require("./dto/email-schedule.dto");
+const interval_email_schedule_dto_1 = require("./dto/interval-email-schedule.dto");
 let EmailScheduleController = class EmailScheduleController {
     constructor(emailScheduleService) {
         this.emailScheduleService = emailScheduleService;
     }
-    async scheduleEmail(emailSchedule) {
-        try {
-            this.emailScheduleService.scheduleEmail(emailSchedule);
-        }
-        catch (err) {
-            console.log(err);
-        }
+    scheduleEmail(emailSchedule) {
+        this.emailScheduleService.scheduleEmail(emailSchedule);
+    }
+    async intervalScheduleEmail(intervalEmailSchedule) {
+        this.emailScheduleService.intervalScheduleEmail(intervalEmailSchedule);
+    }
+    async deleteIntervalScheduleEmail(name) {
+        this.emailScheduleService.deleteIntervalScheduleEmail(name);
     }
 };
 __decorate([
@@ -34,8 +36,22 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [email_schedule_dto_1.EmailScheduleDto]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:returntype", void 0)
 ], EmailScheduleController.prototype, "scheduleEmail", null);
+__decorate([
+    (0, common_1.Post)("interval-schedule-email"),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [interval_email_schedule_dto_1.IntervalScheduleEmail]),
+    __metadata("design:returntype", Promise)
+], EmailScheduleController.prototype, "intervalScheduleEmail", null);
+__decorate([
+    (0, common_1.Delete)("interval-schedule-email/:name"),
+    __param(0, (0, common_1.Param)("name")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], EmailScheduleController.prototype, "deleteIntervalScheduleEmail", null);
 EmailScheduleController = __decorate([
     (0, common_1.Controller)("email-schedule"),
     __metadata("design:paramtypes", [email_schedule_service_1.EmailScheduleService])

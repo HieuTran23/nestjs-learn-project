@@ -170,3 +170,63 @@ Response Code: 500 - Method: GET - URL: /google-authentication
 User: "Not signed in" 
 Critical internal server error occurred!
 
+Response Code: 500 - Method: POST - URL: /email-schedule/interval-schedule-email 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/email-schedule/interval-schedule-email","method":"POST","timeStamp":"2023-02-23T04:13:25.567Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 404 - Method: DELETE - URL: /email-schedule/interval-schedule-email/?name=1677132766258-Please%20learn%20more%20nestjs 
+{"statusCode":404,"error":"Not Found","path":"/email-schedule/interval-schedule-email/?name=1677132766258-Please%20learn%20more%20nestjs","method":"DELETE","timeStamp":"2023-02-23T06:13:24.185Z"} 
+User: "Not signed in" 
+NotFoundException: Cannot DELETE /email-schedule/interval-schedule-email/?name=1677132766258-Please%20learn%20more%20nestjs
+    at callback (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\routes-resolver.js:77:19)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\router-proxy.js:9:23
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:346:12)
+    at next (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\body-parser\lib\types\urlencoded.js:82:7)
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+
+Response Code: 404 - Method: DELETE - URL: /email-schedule/interval-schedule-email/?name=1677132766258-Please%20learn%20more%20nestjs 
+{"statusCode":404,"error":"Not Found","path":"/email-schedule/interval-schedule-email/?name=1677132766258-Please%20learn%20more%20nestjs","method":"DELETE","timeStamp":"2023-02-23T06:13:49.306Z"} 
+User: "Not signed in" 
+NotFoundException: Cannot DELETE /email-schedule/interval-schedule-email/?name=1677132766258-Please%20learn%20more%20nestjs
+    at callback (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\routes-resolver.js:77:19)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\router-proxy.js:9:23
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:346:12)
+    at next (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\body-parser\lib\types\urlencoded.js:82:7)
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+
+Response Code: 404 - Method: DELETE - URL: /email-schedule/interval-schedule-email/?name=1677132766258-Please%20learn%20more%20nestjs 
+{"statusCode":404,"error":"Not Found","path":"/email-schedule/interval-schedule-email/?name=1677132766258-Please%20learn%20more%20nestjs","method":"DELETE","timeStamp":"2023-02-23T06:14:32.348Z"} 
+User: "Not signed in" 
+NotFoundException: Cannot DELETE /email-schedule/interval-schedule-email/?name=1677132766258-Please%20learn%20more%20nestjs
+    at callback (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\routes-resolver.js:77:19)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\router-proxy.js:9:23
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:346:12)
+    at next (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\body-parser\lib\types\urlencoded.js:82:7)
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+
+Response Code: 500 - Method: DELETE - URL: /email-schedule/interval-schedule-email/1677132766258-Please%20learn%20more%20nestjs 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/email-schedule/interval-schedule-email/1677132766258-Please%20learn%20more%20nestjs","method":"DELETE","timeStamp":"2023-02-23T06:14:52.811Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: DELETE - URL: /email-schedule/interval-schedule-email/1677132766258-Please%20learn%20more%20nestjs 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/email-schedule/interval-schedule-email/1677132766258-Please%20learn%20more%20nestjs","method":"DELETE","timeStamp":"2023-02-23T06:14:54.577Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+

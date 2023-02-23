@@ -3,6 +3,7 @@ import { SchedulerRegistry } from "@nestjs/schedule";
 import { EmailService } from "src/email/email.service";
 import { EmailScheduleDto } from "./dto/email-schedule.dto";
 import { CronJob } from "cron";
+import { IntervalScheduleEmail } from "./dto/interval-email-schedule.dto";
 
 @Injectable()
 export class EmailScheduleService {
@@ -11,7 +12,7 @@ export class EmailScheduleService {
     private readonly schedulerRegistry: SchedulerRegistry
   ) {}
 
-  async scheduleEmail(emailSchedule: EmailScheduleDto) {
+  scheduleEmail(emailSchedule: EmailScheduleDto) {
     const date = new Date(emailSchedule.date);
     const job = new CronJob(date, () => {
       this.emailService.sendMail({
@@ -21,8 +22,33 @@ export class EmailScheduleService {
       });
     });
 
-    this.schedulerRegistry.addCronJob(`${Date.now()}-${emailSchedule.subject}`, job);
+    const intervalName = `${Date.now()}-${emailSchedule.subject}`;
+
+    this.schedulerRegistry.addCronJob(intervalName, job);
     job.start();
+  }
+
+  intervalScheduleEmail(intervalScheduleEmail: IntervalScheduleEmail) {
+    const milliseconds = intervalScheduleEmail.milliseconds || 1000;
+
+    const interval = setInterval(() => {
+      this.emailService.sendMail({
+        to: intervalScheduleEmail.recipient,
+        subject: intervalScheduleEmail.subject,
+        text: intervalScheduleEmail.content,
+      });
+    }, milliseconds);
+
+    const intervalName = `${Date.now()}-${intervalScheduleEmail.subject}`;
+
+    this.schedulerRegistry.addInterval(intervalName, interval);
+
+    console.log(intervalName);
+  }
+
+  deleteIntervalScheduleEmail(intervalName: string) {
+    this.schedulerRegistry.deleteInterval(intervalName);
+    console.log(`Interval ${intervalName} deleted!`);
   }
 
   cancelAllScheduledEmails() {
