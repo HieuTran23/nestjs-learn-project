@@ -1,9 +1,6 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import PostController from "./post.controller";
 import PostService from "./post.service";
-import { HttpException, NotFoundException } from "@nestjs/common/exceptions";
-import { HttpStatus } from "@nestjs/common";
-import PostNotFoundException from "./exception/postNotFound.exception";
 
 describe("PostController", () => {
   let controller: PostController;

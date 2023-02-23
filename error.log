@@ -1,0 +1,172 @@
+Response Code: 400 - Method: POST - URL: /auth/register 
+{"statusCode":400,"error":"User with that email already exists","path":"/auth/register","method":"POST","timeStamp":"2023-02-21T08:09:54.729Z"} 
+User: "Not signed in" 
+HttpException: User with that email already exists
+    at AuthService.register (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\src\auth\auth.service.ts:38:15)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+Response Code: 401 - Method: POST - URL: /email-schedule/schedule 
+{"statusCode":401,"error":"Unauthorized","path":"/email-schedule/schedule","method":"POST","timeStamp":"2023-02-22T03:44:31.243Z"} 
+User: "Not signed in" 
+UnauthorizedException: Unauthorized
+    at JwtAuthenticationGuard.handleRequest (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:69:30)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:50:128
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:92:24
+    at allFailed (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at JwtStrategy.strategy.fail (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:305:9)
+    at JwtStrategy.authenticate (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport-jwt\lib\strategy.js:96:21)
+    at attempt (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:369:16)
+    at authenticate (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:370:7)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:97:3
+
+Response Code: 401 - Method: POST - URL: /email-schedule/schedule 
+{"statusCode":401,"error":"Unauthorized","path":"/email-schedule/schedule","method":"POST","timeStamp":"2023-02-22T09:52:24.137Z"} 
+User: "Not signed in" 
+UnauthorizedException: Unauthorized
+    at JwtAuthenticationGuard.handleRequest (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:69:30)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:50:128
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:92:24
+    at allFailed (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at JwtStrategy.strategy.fail (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:305:9)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport-jwt\lib\strategy.js:106:33
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:190:16
+    at getSecret (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:97:14)
+    at Object.module.exports [as verify] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:101:10)
+
+Response Code: 401 - Method: GET - URL: /auth/refresh 
+{"statusCode":401,"error":"Unauthorized","path":"/auth/refresh","method":"GET","timeStamp":"2023-02-22T09:52:32.618Z"} 
+User: "Not signed in" 
+UnauthorizedException: Unauthorized
+    at JwtRefreshGuard.handleRequest (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:69:30)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:50:128
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:92:24
+    at allFailed (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at JwtRefreshTokenStrategy.strategy.fail (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:305:9)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport-jwt\lib\strategy.js:106:33
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:190:16
+    at getSecret (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:97:14)
+    at Object.module.exports [as verify] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:101:10)
+
+Response Code: 401 - Method: POST - URL: /email-schedule/schedule 
+{"statusCode":401,"error":"Unauthorized","path":"/email-schedule/schedule","method":"POST","timeStamp":"2023-02-22T09:56:51.558Z"} 
+User: "Not signed in" 
+UnauthorizedException: Unauthorized
+    at JwtAuthenticationGuard.handleRequest (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:69:30)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:50:128
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:92:24
+    at allFailed (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at JwtStrategy.strategy.fail (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:305:9)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport-jwt\lib\strategy.js:106:33
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:190:16
+    at getSecret (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:97:14)
+    at Object.module.exports [as verify] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:101:10)
+
+Response Code: 401 - Method: POST - URL: /email-schedule/schedule 
+{"statusCode":401,"error":"Unauthorized","path":"/email-schedule/schedule","method":"POST","timeStamp":"2023-02-22T09:58:35.782Z"} 
+User: "Not signed in" 
+UnauthorizedException: Unauthorized
+    at JwtAuthenticationGuard.handleRequest (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:69:30)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:50:128
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:92:24
+    at allFailed (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at JwtStrategy.strategy.fail (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:305:9)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport-jwt\lib\strategy.js:106:33
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:190:16
+    at getSecret (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:97:14)
+    at Object.module.exports [as verify] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:101:10)
+
+Response Code: 401 - Method: POST - URL: /email-schedule/schedule 
+{"statusCode":401,"error":"Unauthorized","path":"/email-schedule/schedule","method":"POST","timeStamp":"2023-02-22T10:41:44.672Z"} 
+User: "Not signed in" 
+UnauthorizedException: Unauthorized
+    at JwtAuthenticationGuard.handleRequest (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:69:30)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:50:128
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:92:24
+    at allFailed (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at JwtStrategy.strategy.fail (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:305:9)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport-jwt\lib\strategy.js:106:33
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:190:16
+    at getSecret (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:97:14)
+    at Object.module.exports [as verify] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:101:10)
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T01:57:22.502Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:02:24.285Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:06:54.204Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:18:02.892Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:19:04.534Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:19:53.922Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:23:19.888Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:32:31.771Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:38:16.393Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:41:14.370Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:43:58.319Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:44:45.628Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:44:47.778Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:46:11.534Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+
+Response Code: 500 - Method: GET - URL: /google-authentication 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/google-authentication","method":"GET","timeStamp":"2023-02-23T02:47:26.405Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+

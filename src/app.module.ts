@@ -12,6 +12,10 @@ import { ProductModule } from "./product/product.module";
 import { IconsModule } from "./icons/icons.module";
 import { LoggingInterceptor } from "./core/logging.interceptor";
 import { TransformInterceptor } from "./core/transform.interceptor";
+import { EmailModule } from "./email/email.module";
+import { ScheduleModule } from "@nestjs/schedule";
+import { EmailScheduleModule } from "./email-schedule/email-schedule.module";
+import { GoogleAuthenticationModule } from './google-authentication/google-authentication.module';
 
 @Module({
   imports: [
@@ -27,6 +31,13 @@ import { TransformInterceptor } from "./core/transform.interceptor";
         REFRESH_TOKEN_KEY: Joi.string(),
         JWT_ACCESS_EXPIRATION_TIME: Joi.string(),
         JWT_REFRESH_EXPIRATION_TIME: Joi.string(),
+        EMAIL_SERVICE: Joi.string(),
+        EMAIL_USER: Joi.string(),
+        EMAIL_PASSWORD: Joi.string(),
+        GOOGLE_CLIENT_ID: Joi.string(),
+        GOOGLE_CLIENT_SECRET: Joi.string(),
+        GOOGLE_REDIRECT_URI: Joi.string(),
+        GOOGLE_REFRESH_TOKEN: Joi.string(),
       }),
     }),
     DatabaseModule,
@@ -36,6 +47,10 @@ import { TransformInterceptor } from "./core/transform.interceptor";
     ProductModule,
     PostModule,
     IconsModule,
+    EmailModule,
+    ScheduleModule.forRoot(),
+    EmailScheduleModule,
+    GoogleAuthenticationModule,
   ],
   controllers: [],
   providers: [
