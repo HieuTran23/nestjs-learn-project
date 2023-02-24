@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { PostModule } from "./post/post.module";
-import { ConfigModule } from "@nestjs/config";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 import { DatabaseModule } from "./database/database.module";
 import { AuthModule } from "./auth/auth.module";
 import { UserModule } from "./user/user.module";
@@ -15,7 +15,8 @@ import { TransformInterceptor } from "./core/transform.interceptor";
 import { EmailModule } from "./email/email.module";
 import { ScheduleModule } from "@nestjs/schedule";
 import { EmailScheduleModule } from "./email-schedule/email-schedule.module";
-import { GoogleAuthenticationModule } from './google-authentication/google-authentication.module';
+import { GoogleAuthenticationModule } from "./google-authentication/google-authentication.module";
+import { BullModule } from "@nestjs/bull";
 
 @Module({
   imports: [
@@ -26,19 +27,31 @@ import { GoogleAuthenticationModule } from './google-authentication/google-authe
         POSTGRES_USER: Joi.string().required(),
         POSTGRES_PASSWORD: Joi.string().required(),
         POSTGRES_DB: Joi.string().required(),
-        PORT: Joi.number(),
-        ACCESS_TOKEN_KEY: Joi.string(),
-        REFRESH_TOKEN_KEY: Joi.string(),
-        JWT_ACCESS_EXPIRATION_TIME: Joi.string(),
-        JWT_REFRESH_EXPIRATION_TIME: Joi.string(),
-        EMAIL_SERVICE: Joi.string(),
-        EMAIL_USER: Joi.string(),
-        EMAIL_PASSWORD: Joi.string(),
-        GOOGLE_CLIENT_ID: Joi.string(),
-        GOOGLE_CLIENT_SECRET: Joi.string(),
-        GOOGLE_REDIRECT_URI: Joi.string(),
-        GOOGLE_REFRESH_TOKEN: Joi.string(),
+        PORT: Joi.number().required(),
+        ACCESS_TOKEN_KEY: Joi.string().required(),
+        REFRESH_TOKEN_KEY: Joi.string().required(),
+        JWT_ACCESS_EXPIRATION_TIME: Joi.string().required(),
+        JWT_REFRESH_EXPIRATION_TIME: Joi.string().required(),
+        EMAIL_SERVICE: Joi.string().required(),
+        EMAIL_USER: Joi.string().required(),
+        EMAIL_PASSWORD: Joi.string().required(),
+        GOOGLE_CLIENT_ID: Joi.string().required(),
+        GOOGLE_CLIENT_SECRET: Joi.string().required(),
+        GOOGLE_REDIRECT_URI: Joi.string().required(),
+        GOOGLE_REFRESH_TOKEN: Joi.string().required(),
+        REDIS_HOST: Joi.string().required(),
+        REDIS_PORT: Joi.number().required(),
       }),
+    }),
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        redis: {
+          host: configService.get("REDIS_HOST"),
+          port: Number(configService.get("REDIS_PORT")),
+        },
+      }),
+      inject: [ConfigService],
     }),
     DatabaseModule,
     AuthModule,

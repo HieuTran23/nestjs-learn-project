@@ -230,3 +230,23 @@ Response Code: 500 - Method: DELETE - URL: /email-schedule/interval-schedule-ema
 User: "Not signed in" 
 Critical internal server error occurred!
 
+Response Code: 401 - Method: POST - URL: /post 
+{"statusCode":401,"error":"Unauthorized","path":"/post","method":"POST","timeStamp":"2023-02-23T09:20:36.459Z"} 
+User: "Not signed in" 
+UnauthorizedException: Unauthorized
+    at JwtAuthenticationGuard.handleRequest (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:69:30)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:50:128
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\passport\dist\auth.guard.js:92:24
+    at allFailed (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:110:18)
+    at attempt (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:183:28)
+    at JwtStrategy.strategy.fail (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport\lib\middleware\authenticate.js:305:9)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\passport-jwt\lib\strategy.js:106:33
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:190:16
+    at getSecret (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:97:14)
+    at Object.module.exports [as verify] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\jsonwebtoken\verify.js:101:10)
+
+Response Code: 500 - Method: GET - URL: /category 
+{"statusCode":500,"error":"Critical internal server error occurred!","path":"/category","method":"GET","timeStamp":"2023-02-23T09:33:57.848Z"} 
+User: "Not signed in" 
+Critical internal server error occurred!
+

@@ -32,6 +32,7 @@ DatabaseModule = __decorate([
                     database: configService.get("POSTGRES_DB"),
                     entities: [product_entity_1.default, user_entity_1.default, post_entity_1.default, category_entities_1.default, icon_entity_1.default],
                     synchronize: true,
+                    logging: true,
                 }),
             }),
         ],

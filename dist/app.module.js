@@ -25,6 +25,7 @@ const email_module_1 = require("./email/email.module");
 const schedule_1 = require("@nestjs/schedule");
 const email_schedule_module_1 = require("./email-schedule/email-schedule.module");
 const google_authentication_module_1 = require("./google-authentication/google-authentication.module");
+const bull_1 = require("@nestjs/bull");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -37,19 +38,31 @@ AppModule = __decorate([
                     POSTGRES_USER: Joi.string().required(),
                     POSTGRES_PASSWORD: Joi.string().required(),
                     POSTGRES_DB: Joi.string().required(),
-                    PORT: Joi.number(),
-                    ACCESS_TOKEN_KEY: Joi.string(),
-                    REFRESH_TOKEN_KEY: Joi.string(),
-                    JWT_ACCESS_EXPIRATION_TIME: Joi.string(),
-                    JWT_REFRESH_EXPIRATION_TIME: Joi.string(),
-                    EMAIL_SERVICE: Joi.string(),
-                    EMAIL_USER: Joi.string(),
-                    EMAIL_PASSWORD: Joi.string(),
-                    GOOGLE_CLIENT_ID: Joi.string(),
-                    GOOGLE_CLIENT_SECRET: Joi.string(),
-                    GOOGLE_REDIRECT_URI: Joi.string(),
-                    GOOGLE_REFRESH_TOKEN: Joi.string(),
+                    PORT: Joi.number().required(),
+                    ACCESS_TOKEN_KEY: Joi.string().required(),
+                    REFRESH_TOKEN_KEY: Joi.string().required(),
+                    JWT_ACCESS_EXPIRATION_TIME: Joi.string().required(),
+                    JWT_REFRESH_EXPIRATION_TIME: Joi.string().required(),
+                    EMAIL_SERVICE: Joi.string().required(),
+                    EMAIL_USER: Joi.string().required(),
+                    EMAIL_PASSWORD: Joi.string().required(),
+                    GOOGLE_CLIENT_ID: Joi.string().required(),
+                    GOOGLE_CLIENT_SECRET: Joi.string().required(),
+                    GOOGLE_REDIRECT_URI: Joi.string().required(),
+                    GOOGLE_REFRESH_TOKEN: Joi.string().required(),
+                    REDIS_HOST: Joi.string().required(),
+                    REDIS_PORT: Joi.number().required(),
                 }),
+            }),
+            bull_1.BullModule.forRootAsync({
+                imports: [config_1.ConfigModule],
+                useFactory: async (configService) => ({
+                    redis: {
+                        host: configService.get("REDIS_HOST"),
+                        port: Number(configService.get("REDIS_PORT")),
+                    },
+                }),
+                inject: [config_1.ConfigService],
             }),
             database_module_1.DatabaseModule,
             auth_module_1.AuthModule,

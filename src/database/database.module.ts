@@ -21,6 +21,7 @@ import Icon from "src/icons/entities/icon.entity";
         database: configService.get("POSTGRES_DB"),
         entities: [Product, User, Post, Category, Icon],
         synchronize: true,
+        logging: true,
       }),
     }),
   ],
