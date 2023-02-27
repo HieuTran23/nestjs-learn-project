@@ -19,4 +19,5 @@ export declare class AuthService {
     }>;
     signAccessToken(userId: number, email: string): Promise<string>;
     signRefreshToken(userId: number, email: string): Promise<string>;
+    getUserFormAuthToken(token: string): Promise<User>;
 }

@@ -1,15 +1,19 @@
 import { Module } from "@nestjs/common";
-import { OptimizeService } from "./optimize.service";
 import { OptimizeController } from "./optimize.controller";
 import { BullModule } from "@nestjs/bull";
+import { MessageOptimizeService } from "./services/message-optimize.service";
+import { MessageConsumer } from "./consumers/message.consumer";
 
 @Module({
   imports: [
     BullModule.registerQueue({
-      name: "image",
+      name: "message-queue",
+    }),
+    BullModule.registerQueue({
+      name: "file-operation-queue",
     }),
   ],
   controllers: [OptimizeController],
-  providers: [OptimizeService],
+  providers: [MessageOptimizeService, MessageConsumer],
 })
 export class OptimizeModule {}

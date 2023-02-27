@@ -26,6 +26,9 @@ const schedule_1 = require("@nestjs/schedule");
 const email_schedule_module_1 = require("./email-schedule/email-schedule.module");
 const google_authentication_module_1 = require("./google-authentication/google-authentication.module");
 const bull_1 = require("@nestjs/bull");
+const optimize_module_1 = require("./optimize/optimize.module");
+const chat_module_1 = require("./chat/chat.module");
+const gateway_module_1 = require("./gateway/gateway.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -75,6 +78,9 @@ AppModule = __decorate([
             schedule_1.ScheduleModule.forRoot(),
             email_schedule_module_1.EmailScheduleModule,
             google_authentication_module_1.GoogleAuthenticationModule,
+            optimize_module_1.OptimizeModule,
+            chat_module_1.ChatModule,
+            gateway_module_1.GatewayModule,
         ],
         controllers: [],
         providers: [

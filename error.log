@@ -250,3 +250,160 @@ Response Code: 500 - Method: GET - URL: /category
 User: "Not signed in" 
 Critical internal server error occurred!
 
+Response Code: 404 - Method: GET - URL: /socket.io/?EIO=4&transport=websocket 
+{"statusCode":404,"error":"Not Found","path":"/socket.io/?EIO=4&transport=websocket","method":"GET","timeStamp":"2023-02-26T17:42:13.380Z"} 
+User: "Not signed in" 
+NotFoundException: Cannot GET /socket.io/?EIO=4&transport=websocket
+    at callback (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\routes-resolver.js:77:19)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\router-proxy.js:9:23
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:346:12)
+    at next (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\body-parser\lib\types\urlencoded.js:91:7)
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+
+Response Code: 404 - Method: GET - URL: /socket.io/?EIO=4&transport=websocket 
+{"statusCode":404,"error":"Not Found","path":"/socket.io/?EIO=4&transport=websocket","method":"GET","timeStamp":"2023-02-26T17:42:14.731Z"} 
+User: "Not signed in" 
+NotFoundException: Cannot GET /socket.io/?EIO=4&transport=websocket
+    at callback (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\routes-resolver.js:77:19)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\router-proxy.js:9:23
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:346:12)
+    at next (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\body-parser\lib\types\urlencoded.js:91:7)
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+
+Response Code: 404 - Method: GET - URL: /socket.io/?EIO=4&transport=websocket 
+{"statusCode":404,"error":"Not Found","path":"/socket.io/?EIO=4&transport=websocket","method":"GET","timeStamp":"2023-02-26T17:42:52.753Z"} 
+User: "Not signed in" 
+NotFoundException: Cannot GET /socket.io/?EIO=4&transport=websocket
+    at callback (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\routes-resolver.js:77:19)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\router-proxy.js:9:23
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:346:12)
+    at next (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\body-parser\lib\types\urlencoded.js:91:7)
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+
+Response Code: 404 - Method: GET - URL: /socket.io/?EIO=4&transport=websocket 
+{"statusCode":404,"error":"Not Found","path":"/socket.io/?EIO=4&transport=websocket","method":"GET","timeStamp":"2023-02-26T17:42:53.914Z"} 
+User: "Not signed in" 
+NotFoundException: Cannot GET /socket.io/?EIO=4&transport=websocket
+    at callback (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\routes-resolver.js:77:19)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\router-proxy.js:9:23
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:346:12)
+    at next (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\body-parser\lib\types\urlencoded.js:91:7)
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+
+Response Code: 404 - Method: GET - URL: /socket.io/?EIO=4&transport=websocket 
+{"statusCode":404,"error":"Not Found","path":"/socket.io/?EIO=4&transport=websocket","method":"GET","timeStamp":"2023-02-26T17:43:05.951Z"} 
+User: "Not signed in" 
+NotFoundException: Cannot GET /socket.io/?EIO=4&transport=websocket
+    at callback (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\routes-resolver.js:77:19)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\router-proxy.js:9:23
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:346:12)
+    at next (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\body-parser\lib\types\urlencoded.js:91:7)
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+
+Response Code: 404 - Method: GET - URL: /socket.io/?EIO=4&transport=websocket 
+{"statusCode":404,"error":"Not Found","path":"/socket.io/?EIO=4&transport=websocket","method":"GET","timeStamp":"2023-02-26T17:43:07.330Z"} 
+User: "Not signed in" 
+NotFoundException: Cannot GET /socket.io/?EIO=4&transport=websocket
+    at callback (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\routes-resolver.js:77:19)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\router-proxy.js:9:23
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:346:12)
+    at next (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\body-parser\lib\types\urlencoded.js:91:7)
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+
+Response Code: 404 - Method: GET - URL: /socket.io/?EIO=4&transport=websocket 
+{"statusCode":404,"error":"Not Found","path":"/socket.io/?EIO=4&transport=websocket","method":"GET","timeStamp":"2023-02-26T17:43:08.382Z"} 
+User: "Not signed in" 
+NotFoundException: Cannot GET /socket.io/?EIO=4&transport=websocket
+    at callback (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\routes-resolver.js:77:19)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\router-proxy.js:9:23
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:346:12)
+    at next (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\body-parser\lib\types\urlencoded.js:91:7)
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+
+Response Code: 404 - Method: GET - URL: /socket.io/?EIO=4&transport=websocket 
+{"statusCode":404,"error":"Not Found","path":"/socket.io/?EIO=4&transport=websocket","method":"GET","timeStamp":"2023-02-26T17:44:17.206Z"} 
+User: "Not signed in" 
+NotFoundException: Cannot GET /socket.io/?EIO=4&transport=websocket
+    at callback (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\routes-resolver.js:77:19)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\router-proxy.js:9:23
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:346:12)
+    at next (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\body-parser\lib\types\urlencoded.js:91:7)
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+
+Response Code: 404 - Method: GET - URL: /socket.io/?EIO=4&transport=websocket 
+{"statusCode":404,"error":"Not Found","path":"/socket.io/?EIO=4&transport=websocket","method":"GET","timeStamp":"2023-02-26T17:44:56.346Z"} 
+User: "Not signed in" 
+NotFoundException: Cannot GET /socket.io/?EIO=4&transport=websocket
+    at callback (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\routes-resolver.js:77:19)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\router-proxy.js:9:23
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:346:12)
+    at next (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\body-parser\lib\types\urlencoded.js:91:7)
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+
+Response Code: 404 - Method: GET - URL: /socket.io/?EIO=4&transport=websocket 
+{"statusCode":404,"error":"Not Found","path":"/socket.io/?EIO=4&transport=websocket","method":"GET","timeStamp":"2023-02-26T17:44:57.398Z"} 
+User: "Not signed in" 
+NotFoundException: Cannot GET /socket.io/?EIO=4&transport=websocket
+    at callback (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\routes-resolver.js:77:19)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\@nestjs\core\router\router-proxy.js:9:23
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+    at E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:346:12)
+    at next (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:280:10)
+    at urlencodedParser (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\body-parser\lib\types\urlencoded.js:91:7)
+    at Layer.handle [as handle_request] (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\node_modules\express\lib\router\index.js:328:13)
+
+Response Code: 400 - Method: POST - URL: /auth/register 
+{"statusCode":400,"error":"User with that email already exists","path":"/auth/register","method":"POST","timeStamp":"2023-02-26T18:44:33.755Z"} 
+User: "Not signed in" 
+HttpException: User with that email already exists
+    at AuthService.register (E:\22+\Learn\07022023_Nestjs\nestjs-learn-project\src\auth\auth.service.ts:39:15)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+

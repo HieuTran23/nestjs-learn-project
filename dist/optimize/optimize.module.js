@@ -8,20 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OptimizeModule = void 0;
 const common_1 = require("@nestjs/common");
-const optimize_service_1 = require("./optimize.service");
 const optimize_controller_1 = require("./optimize.controller");
 const bull_1 = require("@nestjs/bull");
+const message_optimize_service_1 = require("./services/message-optimize.service");
+const message_consumer_1 = require("./consumers/message.consumer");
 let OptimizeModule = class OptimizeModule {
 };
 OptimizeModule = __decorate([
     (0, common_1.Module)({
         imports: [
             bull_1.BullModule.registerQueue({
-                name: "image",
+                name: "message-queue",
+            }),
+            bull_1.BullModule.registerQueue({
+                name: "file-operation-queue",
             }),
         ],
         controllers: [optimize_controller_1.OptimizeController],
-        providers: [optimize_service_1.OptimizeService],
+        providers: [message_optimize_service_1.MessageOptimizeService, message_consumer_1.MessageConsumer],
     })
 ], OptimizeModule);
 exports.OptimizeModule = OptimizeModule;

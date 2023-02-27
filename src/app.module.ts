@@ -17,6 +17,10 @@ import { ScheduleModule } from "@nestjs/schedule";
 import { EmailScheduleModule } from "./email-schedule/email-schedule.module";
 import { GoogleAuthenticationModule } from "./google-authentication/google-authentication.module";
 import { BullModule } from "@nestjs/bull";
+import { OptimizeModule } from "./optimize/optimize.module";
+import { MessageConsumer } from "./optimize/consumers/message.consumer";
+import { ChatModule } from "./chat/chat.module";
+import { GatewayModule } from "./gateway/gateway.module";
 
 @Module({
   imports: [
@@ -64,6 +68,9 @@ import { BullModule } from "@nestjs/bull";
     ScheduleModule.forRoot(),
     EmailScheduleModule,
     GoogleAuthenticationModule,
+    OptimizeModule,
+    ChatModule,
+    GatewayModule,
   ],
   controllers: [],
   providers: [

@@ -6,12 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OptimizeService = void 0;
+exports.ChatModule = void 0;
 const common_1 = require("@nestjs/common");
-let OptimizeService = class OptimizeService {
+const chat_service_1 = require("./chat.service");
+const chat_controller_1 = require("./chat.controller");
+const auth_module_1 = require("../auth/auth.module");
+let ChatModule = class ChatModule {
 };
-OptimizeService = __decorate([
-    (0, common_1.Injectable)()
-], OptimizeService);
-exports.OptimizeService = OptimizeService;
-//# sourceMappingURL=optimize.service.js.map
+ChatModule = __decorate([
+    (0, common_1.Module)({
+        imports: [auth_module_1.AuthModule],
+        controllers: [chat_controller_1.ChatController],
+        providers: [chat_service_1.ChatService],
+        exports: [chat_service_1.ChatService],
+    })
+], ChatModule);
+exports.ChatModule = ChatModule;
+//# sourceMappingURL=chat.module.js.map

@@ -7,6 +7,7 @@ import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
 import User from "src/user/entities/user.entity";
 import LoginDto from "./dto/login.dto";
+import TokenPayload from "./interface/tokenPayload.interface";
 
 @Injectable()
 export class AuthService {
@@ -78,5 +79,15 @@ export class AuthService {
       secret,
     });
     return refresh_token;
+  }
+
+  async getUserFormAuthToken(token: string) {
+    const payload: TokenPayload = this.jwtService.verify(token, {
+      secret: this.configService.get("ACCESS_TOKEN_KEY"),
+    });
+    if (payload.userId) {
+      const user = await this.userService.getById(payload.userId);
+      return user;
+    }
   }
 }

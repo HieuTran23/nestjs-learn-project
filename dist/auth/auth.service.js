@@ -75,6 +75,15 @@ let AuthService = class AuthService {
         });
         return refresh_token;
     }
+    async getUserFormAuthToken(token) {
+        const payload = this.jwtService.verify(token, {
+            secret: this.configService.get("ACCESS_TOKEN_KEY"),
+        });
+        if (payload.userId) {
+            const user = await this.userService.getById(payload.userId);
+            return user;
+        }
+    }
 };
 AuthService = __decorate([
     (0, common_1.Injectable)(),

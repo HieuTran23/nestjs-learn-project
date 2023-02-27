@@ -9,7 +9,7 @@ export declare class JwtRefreshTokenStrategy extends JwtRefreshTokenStrategy_bas
     private readonly userService;
     constructor(configService: ConfigService, userService: UserService);
     validate(req: Request, payload: TokenPayload): Promise<{
-        id: number;
+        userId: number;
         email: string;
     }>;
 }
